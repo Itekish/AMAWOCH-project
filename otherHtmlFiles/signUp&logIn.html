@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../OtherCssFiles/mock.css">
+</head>
+<body>
+    <section id="signUp">
+        <h1>Create Account</h1>
+        <section>
+            <input type="text" id="userName" placeholder="Username e.g John">
+            <input type="email" id="userEmail"  placeholder="E- mail e.g john123@email.com">
+            <input type="password" id="userPassword" placeholder="Password">
+            <div class="checkPassword">
+            <p>Password must be at least</p>
+            <label for="">8 characters</label><input type="checkbox"><br>
+             <label for="">1 uppercase</label><input type="checkbox"><br>
+            <label for=""> and 1 number</label><input type="checkbox">
+            </div>
+            <input type="password" id="confirmPassword" placeholder="Confirm Password">
+            <button id="createAccount">Create Account</button>
+            <div>
+                Already have an account? 
+                <button id="gotoSignIn">Sign In</button>
+            </div>
+        </section>
+    </section>
+
+    <section id="logIn">
+        <h1>Log In to account</h1>
+        <section>
+        <input type="email" id="logInMail">
+        <input type="password" id="logInPassword">
+        <div>
+            Don't have an account yet? 
+                <button id="gotoSignUp">Sign Up</button>
+        </div>
+    </section>
+    </section>
+</body>
+<script>
+    const signUp = document.getElementById('signUp');
+    const logIn = document.getElementById('logIn');
+    const form = document.getElementById('form')
+
+    logIn.style.display = "none"
+
+    gotoSignIn.addEventListener('click', ()=> {
+        signUp.style.display = "none"
+        logIn.style.display = "block"
+
+    })
+
+    gotoSignUp.addEventListener('click', ()=> {
+        signUp.style.display = "block"
+        logIn.style.display = "none"
+
+    })
+</script>
+</html>
