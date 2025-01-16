@@ -1,19 +1,35 @@
-homePage = document.getElementById("home")
-aboutPage = document.getElementById("about")
-signupPage = document.getElementById("signUp")
-getStarted = document.getElementById("getStarted")
+document.addEventListener('DOMContentLoaded', () => {
+    const menuButton = document.querySelector('.menu');
+    const menuList = document.getElementById('menu-list');
 
-homePage.addEventListener('click', ()=> {
-    window.location.href = "./otherHtmlFiles/home.html"
-})
-aboutPage.addEventListener('click', ()=> {
-    window.location.href ="./otherHtmlFiles/about.html"
-})
-signupPage.addEventListener('click', ()=> {
-    window.location.href = "./otherHtmlFiles/signUp&logIn.html"
-})
-getStarted.addEventListener('click', ()=> {
-    window.location.href = "./otherHtmlFiles/signUp&logIn.html"
-})
-homePage.addEventListener('click', ()=> {})
-homePage.addEventListener('click', ()=> {})
+    menuButton.addEventListener('click', () => {
+        menuList.style.display = menuList.style.display === 'block' ? 'none' : 'block';
+    });
+
+
+    const signUpButton = document.getElementById('signup');
+    signUpButton.addEventListener('click', () => {
+        window.location.href = './otherHtmlFiles/signUp&logIn.html';
+    });
+
+    const getStartedButton = document.getElementById('getStarted');
+    getStartedButton.addEventListener('click', () => {
+    });
+
+    const faqLink = document.querySelectorAll('#FAQ');
+    faqLink.forEach(link => {
+        link.addEventListener('click', () => {
+            
+        });
+    });
+
+    // Top Movies Scroll Interaction
+    const marquee = document.querySelector('marquee');
+    marquee.addEventListener('mouseover', () => {
+        marquee.stop();
+    });
+
+    marquee.addEventListener('mouseout', () => {
+        marquee.start();
+    });
+});

@@ -4,22 +4,102 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../OtherCssFiles/mock.css">
 </head>
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: orbitron, sans-serif;
+    background-image: url(../RESOURCES/movie-background-collage.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgb(49, 48, 48);
+    background-blend-mode: multiply;
+    width: 100%;
+    height: 100%;
+    color: white;
+    margin: 5% auto;
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+}
+
+section{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    padding: 1em;
+    width: 90%;
+    max-width: 500px;
+    background-color: rgba(1, 1, 48, 0.8);
+}
+
+h1 {
+    color: teal;
+    font-size: 2em;
+}
+
+input {
+    margin-top: 0.5em;
+    padding: 0.8em 1em;
+    border: none;
+    font-size: 1.1em;
+    background-color: rgb(216, 211, 211);
+    box-shadow: inset 0 0 10px 0 black;
+}
+
+.checkPassword {
+    color: red;
+}
+
+button{
+    padding: 0.5em;
+    font-size: 1.3em;
+    font-weight: 700;
+    border-radius: 1em;
+    background-color: teal;
+    color: white;
+    margin: 0.7em;
+}
+button:hover{
+    background-color: rgba(1, 1, 48);
+    transition: 1s ease;
+}
+#createAccount{
+    margin-top: 1.4em;
+}
+div{
+    color: teal;
+}
+@media only screen and (max-width: 800px) {
+    body{
+        height: 100%;
+        margin-top: 20%;
+    }
+}
+#logIn{
+    display: none;
+}
+
+label{
+    margin-top: 15px;
+    font-weight: 600;
+    font-size: 1em;
+    color: teal;
+}
+</style>
 <body>
     <section id="signUp">
         <h1>Create Account</h1>
+        <span id="errorMsg" style="color: red;"></span>
         <section>
-            <input type="text" id="userName" placeholder="Username e.g John">
-            <input type="email" id="userEmail"  placeholder="E- mail e.g john123@email.com">
-            <input type="password" id="userPassword" placeholder="Password">
-            <div class="checkPassword">
-            <p>Password must be at least</p>
-            <label for="">8 characters</label><input type="checkbox"><br>
-             <label for="">1 uppercase</label><input type="checkbox"><br>
-            <label for=""> and 1 number</label><input type="checkbox">
-            </div>
-            <input type="password" id="confirmPassword" placeholder="Confirm Password">
+           <label for="">What can we call you?</label> <input type="text" id="username" placeholder="Username e.g John" required>
+            <label for="">E-mail</label><input type="email" id="email"  placeholder="E- mail e.g john123@email.com" required>
+            <label for="">Password</label><input type="password" id="password" placeholder="Password">
             <button id="createAccount">Create Account</button>
             <div>
                 Already have an account? 
@@ -29,34 +109,19 @@
     </section>
 
     <section id="logIn">
-        <h1>Log In to account</h1>
+        <h1>Sign In to account</h1>
+        <span id="logInErrorMsg" style="color: red;"></span>
         <section>
-        <input type="email" id="logInMail">
-        <input type="password" id="logInPassword">
+       <label for="">Your e-mail</label> <input type="email" id="logInMail" placeholder="E- mail e.g john123@email.com">
+        <label for="">Password</label><input type="password" id="logInPassword" placeholder="Password">
+        <button id="signin">Sign In</button>
         <div>
             Don't have an account yet? 
                 <button id="gotoSignUp">Sign Up</button>
         </div>
     </section>
     </section>
+    <a href="../otherHtmlFiles/home.html"></a>
 </body>
-<script>
-    const signUp = document.getElementById('signUp');
-    const logIn = document.getElementById('logIn');
-    const form = document.getElementById('form')
-
-    logIn.style.display = "none"
-
-    gotoSignIn.addEventListener('click', ()=> {
-        signUp.style.display = "none"
-        logIn.style.display = "block"
-
-    })
-
-    gotoSignUp.addEventListener('click', ()=> {
-        signUp.style.display = "block"
-        logIn.style.display = "none"
-
-    })
-</script>
+<script type="module" src="../auth/signup&login.js"></script>
 </html>
