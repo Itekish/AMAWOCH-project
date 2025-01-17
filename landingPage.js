@@ -24,12 +24,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Top Movies Scroll Interaction
-    const marquee = document.querySelector('marquee');
-    marquee.addEventListener('mouseover', () => {
-        marquee.stop();
-    });
+//     const marquee = document.querySelector('marquee');
+//     marquee.addEventListener('mouseover', () => {
+//         marquee.stop();
+//     });
 
-    marquee.addEventListener('mouseout', () => {
-        marquee.start();
-    });
+//     marquee.addEventListener('mouseout', () => {
+//         marquee.start();
+//     });
 });

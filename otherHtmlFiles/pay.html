@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pay</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #payment-form {
+            width: 100%;
+            max-width: 500px;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            color: #333;
+        }
+
+        #payment-form h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        #card-element {
+            margin-bottom: 20px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #payment-result {
+            margin-top: 15px;
+            padding: 10px;
+            color: green;
+            font-weight: bold;
+            display: none;
+        }
+
+        #payment-result.error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="payment-form" autocomplete="off">
+        <h2>Complete Your Payment</h2>
+        <div id="card-element"></div>
+        <button id="submit">Pay</button>
+        <p id="payment-result"></p>
+    </form>
+
+    <script type="module">
+        const stripe = Stripe("pk_test_51QiDzyIGZO3T7wAI3BtX7aLzMeWvkJT0yB8WgZ1vvo56ZyG9kgyHp3gkOlisluiQe7uzWh1lZSeMleKVq45KMhME00IWIcnHT5");
+        const elements = stripe.elements();
+
+        const cardElement = elements.create("card");
+        cardElement.mount("#card-element");
+
+        const form = document.getElementById("payment-form");
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const { error, paymentMethod } = await stripe.createPaymentMethod({
+                type: "card",
+                card: cardElement,
+            });
+
+            const resultElement = document.getElementById("payment-result");
+            if (error) {
+                console.error("Error:", error.message);
+                resultElement.textContent = error.message;
+                resultElement.classList.add("error");
+                resultElement.style.display = "block";
+            } else {
+                console.log("Payment method:", paymentMethod);
+                resultElement.textContent = "Payment successful!";
+                resultElement.classList.remove("error");
+                resultElement.style.display = "block";
+            }
+        });
+    </script>
+    <script src="https://js.stripe.com/v3/"></script>
+
+</body>
+
+</html>

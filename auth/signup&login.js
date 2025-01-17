@@ -49,8 +49,6 @@ gotoSignUp.addEventListener('click', ()=> {
 function showError(message){
     errorMsg.textContent = message;
     logInErrorMsg.textContent = message;
-
-    console.log(errorMsg.innerHTML);
     
     setTimeout(() => {
         errorMsg.style.display = 'none'
@@ -58,6 +56,7 @@ function showError(message){
 }
 
 createAccount.addEventListener('click', ()=> {
+    errorMsg.innerHTML = '';
     const username = document.getElementById('username').value;
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
@@ -73,16 +72,17 @@ createAccount.addEventListener('click', ()=> {
             username: username
         } 
         const docRef = doc(db, 'users', user.uid);
-        console.log(docRef);
         
         showError(`Account created successfully`);
+        errorMsg.textContent = `Account created successfully`;
         setDoc(docRef, userData)
-
+        
         .then(()=> {
             window.location.href = '../otherHtmlFiles/home.html'
         })
         .catch((error)=>{
-            console.log('error writing doc', error);
+            showError('Check your internet connection')
+            errorMsg.textContent = 'Check your internet connection';
             
         });
     })
@@ -90,18 +90,20 @@ createAccount.addEventListener('click', ()=> {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorMessage);
-
+        
+        
         if (errorMessage == 'Firebase: Error (auth/email-already-in-use).') {
             showError('User already exists.Try a new e-mail or password')
         }else if (errorMessage == 'Firebase: Password should be at least 6 characters (auth/weak-password).'){
             showError('Password is weak')
         } else {
-            showError('Unable to create user')
+            showError('Unable to create user. Check your internet connection')
         }
     })
 })
 
 const signIn = document.getElementById('signin');
+logInErrorMsg.innerHTML = '';
 
 signIn.addEventListener('click', (e)=>{
     const email = document.getElementById('logInMail').value;
@@ -119,8 +121,6 @@ signIn.addEventListener('click', (e)=>{
 .catch((error)=> {
     const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorMessage);
-
         if (errorMessage == 'Firebase: Error (auth/invalid-credential).') {
             logInErrorMsg.textContent = 'Incorrect e-mail or password'
         }else{

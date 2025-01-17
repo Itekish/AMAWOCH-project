@@ -1,0 +1,100 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+    /* margin: auto; */
+    font-family: Arial, sans-serif;
+    color: teal;
+    background: url('../RESOURCES/wonderWomanDew.jpg') 
+    no-repeat center center fixed;
+    background-color:  rgba(1, 1, 48, 0.5);
+    background-blend-mode: multiply;
+    background-size: cover;
+    font-size: 1.2em;
+  }
+  
+  .subscribe-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .subscribe-card {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px 40px;
+    border-radius: 8px;
+    text-align: center;
+    max-width: 500px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  .subscribe-card h1 {
+    color: teal;
+    margin-bottom: 10px;
+  }
+  
+  .pricing {
+    margin: 20px 0;
+  }
+  
+  .original-price {
+    text-decoration: line-through;
+    color: gray;
+    font-size: 18px;
+    margin-right: 10px;
+  }
+  
+  .discounted-price {
+    color: rgb(99, 201, 99);
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .offer {
+    color: #f5c542;
+    margin-top: 5px;
+  }
+
+  input {
+    margin-top: 0.5em;
+    padding: 0.8em 3em;
+    border: none;
+    font-size: 1.1em;
+    background-color: rgb(216, 211, 211);
+    box-shadow: inset 0 0 10px 0 black;
+}
+  
+  .subscribe-btn {
+    margin-top: .8em;
+    width: 100%;
+    padding: .5em 2em;
+    background-color: teal;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 1.5em;
+    cursor: pointer;
+    font-size: 1.2em;
+  }
+  
+  .subscribe-btn:hover {
+    background-color: rgba(1, 1, 48);
+    transition: 1s ease;
+    scale: 0.9;
+    cursor: pointer;
+  }
+ 
+  .hidden {
+    display: none;
+  }
+  
+  #success-message {
+    margin-top: 15px;
+    font-size: 16px;
+    color: lightgreen;
+  }
+  

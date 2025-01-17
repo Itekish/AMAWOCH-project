@@ -14,6 +14,35 @@ body {
     display: none;
 }
 
+nav{
+    background-color: rgb(1, 116, 116, 0.5);
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    /* position: sticky; */
+    z-index: 1;
+}
+
+button {
+    background-color: teal;
+    color: white;
+    height: 48px;
+    width: 120px;
+    border: none;
+    border-radius: 1.5em;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+#user{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
 .card {
     width: clamp(150px, 95vw, 250px);
     box-shadow: 0 0 .8rem white;
@@ -103,7 +132,6 @@ body {
     position: fixed;
     width: 100%;
     height: 100%;
-    /* background-image: linear-gradient(rgba(0, 0, 0, .9), rgba(0, 0, 0, 1)), url(https://unsplash.it/1600/900); */
     background-size: cover;
     background-position: center;
     top: 0;
@@ -155,7 +183,7 @@ body {
      margin: 1rem 0;
      }
 .trailer iframe {
-    border: 2px solid orangered;
+    border: 2px solid teal;
     box-shadow: 0 0 .5rem rgba(255, 0, 0, 1);
     border-radius: .5rem;
     max-width: 400px;
@@ -175,7 +203,7 @@ body {
 
 .show-popup { transform: scale(1); }
 
-.change-color { color: #ff0000; }
+.change-color { color: red; }
 
 @media only screen and (max-width: 800px) {
     .detailsDiv * { padding: 0; }
@@ -188,4 +216,8 @@ body {
         top: 10px;
         right: 20px;
     }
+    .logo{
+        width: 100px;
+    }
+    h3, #logOut{display: none;}
 }
