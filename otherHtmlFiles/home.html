@@ -15,8 +15,9 @@
                 <img src="../RESOURCES/amawochlogo-removebg-previewcopy.png" alt="" class="logo">
                 <img src="../RESOURCES/rb_43821 (1).png" alt="" style="width: 50px; display: none;" id="premiumBadge">
             </a>
+            <strong id="subscribe" class="subscribe-function" style=" text-decoration: none; font-size: 1.1em; color: yellow;" onclick="gotoSubscribe()">Subscribe</strong>
         </div>
-       
+        
         <div id="user">
             <h3>Welcome User</h3>
             <div style="display: flex; align-items: center; gap: 10px;">
@@ -30,9 +31,16 @@
             <button id="logOut">Log out</button>
         </div>
     </nav>
+    <div class="side-nav" id="side-nav">
+        Menu 
+        <ul>
+            <a href="#"><li>Favorites</li></a>
+            <a href="#"><li>Trending</li></a>
+        </ul>
+    </div>
     <div class="container">
         <div class="search">
-            <input type="text" placeholder="Search Movie">
+            <input type="text" placeholder="Search Movie" oninput=" displaySearchedMovies()">
             <button>Search</button>
         </div>
         <div class="favorites">

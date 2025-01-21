@@ -2,8 +2,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
 import{getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
-import{getFirestore, setDoc, doc} from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
-
+import{getFirestore, setDoc, doc, getDoc} from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
 
 
 const firebaseConfig = {
@@ -97,7 +96,7 @@ createAccount.addEventListener('click', ()=> {
         }else if (errorMessage == 'Firebase: Password should be at least 6 characters (auth/weak-password).'){
             showError('Password is weak')
         } else {
-            showError('Unable to create user. Check your internet connection')
+            showError('Unable to create user.')
         }
     })
 })
@@ -116,6 +115,7 @@ signIn.addEventListener('click', (e)=>{
         showError('Sign in successful')
         const user = userCrediential.user;
         localStorage.setItem('loggedInUserId', user.uid);
+        // localStorage.setItem('username', userData.username);
         window.location.href = '../otherHtmlFiles/home.html'
 }) 
 .catch((error)=> {

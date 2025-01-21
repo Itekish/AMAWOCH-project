@@ -14,6 +14,13 @@ body {
     display: none;
 }
 
+.side-nav{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    left: 0;
+}
+
 nav{
     background-color: rgb(1, 116, 116, 0.5);
     padding: 1em;
@@ -23,6 +30,11 @@ nav{
     width: 100%;
     /* position: sticky; */
     z-index: 1;
+}
+
+.subscribe-function:hover{
+    cursor: pointer;
+    scale: 1.2;
 }
 
 button {
@@ -41,6 +53,18 @@ button {
     flex-direction: row;
     align-items: center;
     gap: 20px;
+}
+
+.side-nav{
+    padding: 1em 1.5em;
+    font-size: 1.8em;
+    text-align: left;
+    background-color: rgb(0, 128, 128, 0.2);
+    a{
+        list-style-type: none;
+        text-decoration: none;
+        color: white;
+    }
 }
 
 .card {
@@ -219,5 +243,8 @@ button {
     .logo{
         width: 100px;
     }
-    h3, #logOut{display: none;}
+    h3, #logOut, .side-nav a{display: none;}
+    .side-nav{
+        padding: 0;
+    }
 }

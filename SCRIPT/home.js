@@ -13,18 +13,27 @@ const favorite = document.querySelector('.favorites h1')
 
 const displayMovieDetails = document.querySelector('.detailsDiv')
 const displayUsername = document.querySelector('h3');
+const userImg = document.getElementById("userImg");
+const defaultIcon = document.getElementById("defaultIcon");
+const uploadInput = document.getElementById("uploadInput");
+const subscribe = document.getElementById('subscribe');
+
+function gotoSubscribe(){
+    window.location.href = '../otherHtmlFiles/subscribe.html'
+}
 
 let premiumUser = false;
-console.log(premiumUser);
+// console.log(premiumUser);
 
 const isPremiumUser = localStorage.getItem("premiumUser") === "true";
 
 if (isPremiumUser) {
     premiumUser = true
+    subscribe.style.display = 'none'
     premiumBadge.style.display = 'block'
-    console.log("User is premium.");
+    // console.log("User is premium.");
 } else {
-    console.log("User is not premium.");
+    // console.log("User is not premium.");
 }
 
 
@@ -37,7 +46,7 @@ function clickCard (cards) {
 
 // SEARCH MOVIES
 async function getMovieBySearch (searchTerm) {
-    const resp = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=$sea{searchTerm}`)
+    const resp = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${searchTerm}`)
     const respData = await resp.json()
     
     return respData.results
@@ -47,6 +56,8 @@ btn.addEventListener('click', displaySearchedMovies)
 
 async function displaySearchedMovies() {
     const data = await getMovieBySearch(input.value)
+    // console.log(data);
+    
 
     mainTitle.innerText = `Search Results`
    mainDiv.innerHTML = data.map(e => {
@@ -81,19 +92,44 @@ async function getMovies (id) {
     
     return respData
 }
-// async function getMovieTrailer (id) {
-//     const resp = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}`)
-//     const respData = await resp.json()
-    
-//     // return respData.results[0].key
-// }
+
+async function getMovieTrailer(id) {
+    const resp = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}`);
+    const respData = await resp.json();
+
+    if (respData.results && respData.results.length > 0) {
+        const trailer = respData.results.find(video => video.type === 'Trailer' && video.site === 'YouTube');
+        if (trailer) {
+            return trailer.key;
+        }
+    }
+    return null; 
+}
+
 
 async function show_popup (card) {
    displayMovieDetails.classList.add('show-popup')
 
     const movie_id = card.getAttribute('data-id')
     const movie = await getMovies(movie_id)
-    // const movieTrailer = await getMovieTrailer(movie_id)
+    const movieTrailerKey = await getMovieTrailer(movie_id);
+
+    console.log(movie);
+    
+
+    let trailerEmbed = '';
+if (movieTrailerKey) {
+    trailerEmbed = `
+        <div class="trailer-container">
+            <iframe width="100%" height="400" src="https://www.youtube.com/embed/${movieTrailerKey}?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>`;
+} else {
+    trailerEmbed = `<p>No trailer available.</p>`;
+}
+
+    console.log(trailerEmbed);
+    
+    const movieTrailer = await getMovieTrailer(movie_id)
 
    displayMovieDetails.style.background = `linear-gradient(rgba(0, 0, 0, .8), rgba(0, 0, 0, 1)), url(${image_path + movie.poster_path})`
 
@@ -145,8 +181,15 @@ async function show_popup (card) {
                         <p>${movie.overview}</p>
                     </div>
                    
+                    <div>
+                    ${trailerEmbed}
+                    <div/>
+                   <!-- <button style="margin: auto; padding: .5em;" onclick="watch-full-movie()">Watch full movie</button>-->
                 </div>
-            </div>
+                </div>
+                </div>
+                </div>
+
     `
     const x_icon = document.querySelector('.x-icon')
     x_icon.addEventListener('click', () =>{displayMovieDetails.classList.remove('show-popup')
@@ -170,6 +213,10 @@ async function show_popup (card) {
         }
         fetchFavoriteMovies()
     })
+}
+
+function watchFullMovie(){
+    window.location.href = '../otherHtmlFiles/fullMovie.html'
 }
 
 // Local Storage
@@ -263,11 +310,6 @@ async function trendingMoviesContainer () {
     }).join('')
 }
 
-const userImg = document.getElementById("userImg");
-const defaultIcon = document.getElementById("defaultIcon");
-const uploadInput = document.getElementById("uploadInput");
-
-// Load profile picture from localStorage
 const loadProfilePic = () => {
     const savedImage = localStorage.getItem("profilePicture");
     if (savedImage) {
@@ -277,7 +319,6 @@ const loadProfilePic = () => {
     }
 };
 
-// Upload image and save to localStorage
 uploadInput.addEventListener("change", (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -292,9 +333,7 @@ uploadInput.addEventListener("change", (e) => {
     }
 });
 
-// Trigger file input on icon click
 defaultIcon.addEventListener("click", () => uploadInput.click());
 
-// Initialize on page load
 window.onload = loadProfilePic;
 
