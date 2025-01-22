@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AMAWOCH Signup/Login</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=visibility_off" />
 </head>
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
     * {
     margin: 0;
     padding: 0;
@@ -13,7 +16,7 @@
 }
 
 body {
-    font-family: orbitron, sans-serif;
+    font-family: Lato, sans-serif;
     background-image: url(../RESOURCES/movie-background-collage.jpg);
     background-repeat: no-repeat;
     background-size: cover;
@@ -51,13 +54,14 @@ h1 {
     font-size: 2em;
 }
 
-input {
+input{
     margin-top: 0.5em;
     padding: 0.8em 1em;
     border: none;
     font-size: 1.1em;
     background-color: rgb(216, 211, 211);
     box-shadow: inset 0 0 10px 0 black;
+    width: 100%;
 }
 
 .checkPassword {
@@ -87,6 +91,7 @@ div{
     body{
         height: 100%;
         margin-top: 20%;
+        font-size: 1rem;
     }
 }
 #logIn{
@@ -108,7 +113,13 @@ label{
         <section>
            <label for="">What can we call you?</label> <input type="text" id="username" placeholder="Username e.g John" required>
             <label for="">E-mail</label><input type="email" id="email"  placeholder="E- mail e.g john123@email.com" required>
-            <label for="">Password</label><input type="password" id="password" placeholder="Password" required>
+            <label for="">Password</label>
+            <div class="password-div">
+                <input type="password" id="password" class="password-input" placeholder="Password" required >
+                <span class="material-symbols-outlined" style="color: white; cursor: pointer;" onclick="showPassword()">
+                    visibility_off
+                    </span>
+            </div>
             <button id="createAccount">Create Account</button>
             <div>
                 Already have an account? 
@@ -122,7 +133,14 @@ label{
         <span id="logInErrorMsg" style="color: red;"></span>
         <section>
        <label for="">Your e-mail</label> <input type="email" id="logInMail" placeholder="E- mail e.g john123@email.com" required>
-        <label for="">Password</label><input type="password" id="logInPassword" placeholder="Password" required>
+       <label for="">Password</label>
+       <div class="password-div">
+      <input type="password" id="logInPassword" class="password-input" placeholder="Password" required>
+      <span class="material-symbols-outlined" style="color: white; cursor: pointer;" onclick="showPassword()">
+        visibility_off
+        </span>
+        
+       </div>
         <button id="signin">Sign In</button>
         <div>
             Don't have an account yet? 
@@ -130,7 +148,15 @@ label{
         </div>
     </section>
     </section>
-    <a href="../otherHtmlFiles/home.html"></a>
 </body>
+<script>
+   function showPassword() {
+    const passwordInputs = document.querySelectorAll('.password-input');
+
+    passwordInputs.forEach(input => {
+        input.type = input.type === 'password' ? 'text' : 'password';
+    });
+}
+</script>
 <script type="module" src="../auth/signup&login.js"></script>
 </html>

@@ -1,16 +1,12 @@
 const API_KEY = `3e583686cb2086cb013a828648700a47`
 const image_path = `https://image.tmdb.org/t/p/w1280`
 
-
 const input = document.querySelector('.search input');
 const btn = document.querySelector('.search button')
 const mainTitle = document.querySelector('.favorites h1')
 const mainDiv = document.querySelector('.favorites .moviesDiv')
-
 const trendingElement = document.querySelector('.trending .moviesDiv')
-
 const favorite = document.querySelector('.favorites h1')
-
 const displayMovieDetails = document.querySelector('.detailsDiv')
 const displayUsername = document.querySelector('h3');
 const userImg = document.getElementById("userImg");
@@ -33,7 +29,7 @@ if (isPremiumUser) {
     premiumBadge.style.display = 'block'
     // console.log("User is premium.");
 } else {
-    // console.log("User is not premium.");
+  
 }
 
 
@@ -121,13 +117,13 @@ async function show_popup (card) {
 if (movieTrailerKey) {
     trailerEmbed = `
         <div class="trailer-container">
-            <iframe width="100%" height="400" src="https://www.youtube.com/embed/${movieTrailerKey}?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <iframe width="100%" height="400" src="https://www.youtube.com/embed/${movieTrailerKey}?autoplay=1" frameborder="0" allow="; encrypted-media" allowfullscreen></iframe>
         </div>`;
 } else {
     trailerEmbed = `<p>No trailer available.</p>`;
 }
 
-    console.log(trailerEmbed);
+    // console.log(trailerEmbed);
     
     const movieTrailer = await getMovieTrailer(movie_id)
 

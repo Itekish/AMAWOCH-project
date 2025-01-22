@@ -45,6 +45,7 @@ gotoSignUp.addEventListener('click', ()=> {
     showError('')
 })
 
+
 function showError(message){
     errorMsg.textContent = message;
     logInErrorMsg.textContent = message;
@@ -68,7 +69,8 @@ createAccount.addEventListener('click', ()=> {
         const user = userCrediential.user;
         const userData = {
             email: email,
-            username: username
+            username: username,
+            isPremium: false
         } 
         const docRef = doc(db, 'users', user.uid);
         
@@ -115,7 +117,7 @@ signIn.addEventListener('click', (e)=>{
         showError('Sign in successful')
         const user = userCrediential.user;
         localStorage.setItem('loggedInUserId', user.uid);
-        // localStorage.setItem('username', userData.username);
+        localStorage.setItem('username', docRef.username);
         window.location.href = '../otherHtmlFiles/home.html'
 }) 
 .catch((error)=> {
