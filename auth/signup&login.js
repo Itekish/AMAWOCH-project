@@ -117,12 +117,13 @@ signIn.addEventListener('click', (e)=>{
         showError('Sign in successful')
         const user = userCrediential.user;
         localStorage.setItem('loggedInUserId', user.uid);
-        localStorage.setItem('username', docRef.username);
         window.location.href = '../otherHtmlFiles/home.html'
 }) 
 .catch((error)=> {
     const errorCode = error.code;
         const errorMessage = error.message;
+        console.log(errorMessage);
+        
         if (errorMessage == 'Firebase: Error (auth/invalid-credential).') {
             logInErrorMsg.textContent = 'Incorrect e-mail or password'
         }else{
